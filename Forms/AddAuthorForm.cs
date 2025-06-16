@@ -30,8 +30,8 @@ namespace LibraryApp.Forms
                 if (dal.AddAuthor(newAuthor))
                 {
                     MessageBox.Show("تمت إضافة المؤلف بنجاح.", "نجاح العملية", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    GlobalData.RefreshAuthorsList(); // تحديث القائمة الخاصة بالمؤلفين
-                    this.Close(); // إغلاق النافذة بعد الإضافة
+                    GlobalData.RefreshAuthorsList(); 
+                    this.Close(); 
                 }
                 else
                 {

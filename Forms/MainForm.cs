@@ -10,17 +10,15 @@ namespace LibraryApp.Forms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            MessageBox.Show($"Authors: {GlobalData.AuthorsList?.Count}, Books: {GlobalData.BooksList?.Count}");
-
-            dgvBooks.AutoGenerateColumns = true; // force default columns
+            dgvBooks.AutoGenerateColumns = true;
             DisplayData();
         }
 
 
-      
 
 
-            private void DisplayData()
+
+        private void DisplayData()
         {
             dgvAuthors.AutoGenerateColumns = true;
             dgvAuthors.DataSource = null;
@@ -31,7 +29,7 @@ namespace LibraryApp.Forms
             dgvBooks.DataSource = GlobalData.BooksList.ToList();
         }
 
-        
+
 
         private void btnAddAuthor_Click(object sender, EventArgs e)
         {

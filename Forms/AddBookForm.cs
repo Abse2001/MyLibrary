@@ -17,14 +17,24 @@ namespace LibraryApp.Forms
 
         private void LoadAuthorsComboBox()
         {
-            // بإستخدام ToString في Author لعرض الإسم
-            cmbAuthors.DataSource = null; // لتهيئة القائمة قبل التعبئة
-            cmbAuthors.DataSource = GlobalData.AuthorsList;
-            cmbAuthors.DisplayMember = "ToString"; // لاستخدام ToString() في Author
-            cmbAuthors.ValueMember = "AuthorID"; // لتعيين AuthorID كقيمة
+            cmbAuthors.DataSource = null;
+
+            var authorDisplayList = GlobalData.AuthorsList
+                .Select(a => new
+                {
+                    a.AuthorID,
+                    Display = $"{a.AuthorID} - {a.FirstName} {a.LastName}"
+                })
+                .ToList();
+
+            cmbAuthors.DataSource = authorDisplayList;
+            cmbAuthors.DisplayMember = "Display";    // what is shown in dropdown
+            cmbAuthors.ValueMember = "AuthorID";     // what is returned by SelectedValue
+
             if (cmbAuthors.Items.Count > 0)
                 cmbAuthors.SelectedIndex = 0;
         }
+
         private void btnAddBook_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtTitle.Text) || cmbAuthors.SelectedItem == null)
@@ -45,8 +55,8 @@ namespace LibraryApp.Forms
                 if (dal.AddBook(newBook))
                 {
                     MessageBox.Show("تمت إضافة الكتاب بنجاح.", "نجاح العملية", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    GlobalData.RefreshBooksList(); // تحديث قائمة الكتب
-                    this.Close(); // إغلاق النافذة
+                    GlobalData.RefreshBooksList(); 
+                    this.Close();
                 }
                 else
                 {

@@ -16,7 +16,6 @@ public static class GlobalData
 
     public static void RefreshAuthorsList()
     {
-        System.Windows.Forms.MessageBox.Show("GlobalData → RefreshAuthorsList()");
         using (var dal = new AuthorDAL())
             AuthorsList = dal.GetAll();
     }

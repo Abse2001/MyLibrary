@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using LibraryApp.Models;
 
 namespace LibraryApp.DAL
 {
@@ -11,7 +10,6 @@ namespace LibraryApp.DAL
 
         public bool AddAuthor(Author author)
         {
-            System.Windows.Forms.MessageBox.Show("AuthorDAL constructor");
             string query = "INSERT INTO Authors (FirstName, LastName, Age) VALUES (@FirstName, @LastName, @Age)";
             using (SqlCommand cmd = new SqlCommand(query, base.connection))
             {
@@ -44,7 +42,7 @@ namespace LibraryApp.DAL
             try
             {
                 OpenConnection();
-                System.Windows.Forms.MessageBox.Show("Connection opened"); // Confirm DB connection opened
+             
 
                 string sql = "SELECT * FROM Authors";
                 using var cmd = new SqlCommand(sql, connection);
@@ -61,11 +59,10 @@ namespace LibraryApp.DAL
                     });
                 }
 
-                System.Windows.Forms.MessageBox.Show("Authors loaded: " + list.Count); // Confirm data retrieved
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("AuthorDAL.GetAll ERROR:\n" + ex.Message);
+                MessageBox.Show("❌ DB error: " + ex.Message);
             }
             finally
             {
@@ -74,6 +71,7 @@ namespace LibraryApp.DAL
 
             return list;
         }
+
 
 
     }

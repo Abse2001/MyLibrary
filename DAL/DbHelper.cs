@@ -6,7 +6,7 @@ namespace LibraryApp.DAL
 {
     public class DbHelper : IDisposable
     {
-        protected string connectionString = "Server=Ase;Database=MyLibraryDB;Trusted_Connection=True;";
+        protected string connectionString = "Server=Abse;Database=MyLibraryDB;Trusted_Connection=True;";
         // "Server=YOUR_SERVER_NAME;Database=MyLibraryDB;User ID=YourUser;Password=YourPassword";
 
         protected SqlConnection connection;
